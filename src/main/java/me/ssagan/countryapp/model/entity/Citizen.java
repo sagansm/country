@@ -5,6 +5,7 @@ public class Citizen {
     private String surname;
     private String name;
     private int age;
+    private Country country;
 
     public int getId() {
         return id;
@@ -36,5 +37,13 @@ public class Citizen {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }

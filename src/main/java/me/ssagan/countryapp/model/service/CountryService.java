@@ -13,7 +13,7 @@ public class CountryService {
             ) {
                 totalAge = totalAge + citizen.getAge();
             }
-            averageAge = (int)(totalAge/country.getCitizens().size());
+            averageAge = (int) (totalAge / country.getCitizens().size());
         }
         return averageAge;
     }

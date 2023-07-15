@@ -1,18 +1,18 @@
 package me.ssagan.countryapp.model.entity;
 
 public class Citizen {
-    private int id;
+    private final int id;
     private String surname;
     private String name;
     private int age;
     private Country country;
 
-    public int getId() {
-        return id;
+    public Citizen(int id) {
+        this.id = id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getId() {
+        return id;
     }
 
     public String getSurname() {

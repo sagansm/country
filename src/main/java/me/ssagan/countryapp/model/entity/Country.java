@@ -1,14 +1,13 @@
 package me.ssagan.countryapp.model.entity;
 
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 
 public class Country {
 
     private static Country INSTANCE;
 
-    private Country() {}
+    private Country() {
+    }
 
     public static Country getInstance() {
         if (INSTANCE == null) {
@@ -19,7 +18,8 @@ public class Country {
 
     private String name;
     private String capital;
-    private HashSet<Citizen> citizens = new HashSet<Citizen>() {};
+    private HashSet<Citizen> citizens = new HashSet<>() {
+    };
 
     public String getName() {
         return name;
@@ -41,7 +41,8 @@ public class Country {
         return citizens;
     }
 
-    public void addCitizen(Citizen citizen){
+    public void addCitizen(Citizen citizen) {
         citizens.add(citizen);
+        citizen.setCountry(this);
     }
 }

@@ -15,7 +15,7 @@ public class _Main {
         secondCitizen.setName("Polina");
         secondCitizen.setAge(10);
 
-        Country myCountry = new Country();
+        Country myCountry = Country.getInstance();
         myCountry.setName("Montenegro");
         myCountry.setCapital("Podgorica");
         myCountry.addCitizen(firstCitizen);

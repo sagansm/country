@@ -5,6 +5,18 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 public class Country {
+
+    private static Country INSTANCE;
+
+    private Country() {}
+
+    public static Country getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new Country();
+        }
+        return INSTANCE;
+    }
+
     private String name;
     private String capital;
     private HashSet<Citizen> citizens = new HashSet<Citizen>() {};

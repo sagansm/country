@@ -6,6 +6,7 @@ import me.ssagan.countryapp.model.entity.Country;
 import me.ssagan.countryapp.model.entity.Region;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class CountryService {
 
@@ -22,33 +23,39 @@ public class CountryService {
         return averageAge;
     }
 
-    public int countRegion(Country country){
+    public int countRegion(Country country) {
         return country.getRegions().size();
     }
 
-    public ArrayList<String> getRegionCenters(Country country){
-
-        ArrayList<String> regionCenters = new ArrayList<>();
-
-        for (Region region:country.getRegions()
-             ) {
-            regionCenters.add(region.getCenter().getName());
+    public HashSet<City> getRegionCenters(Country country) {
+        HashSet<City> regionCenters = new HashSet<>();
+        for (Region region : country.getRegions()
+        ) {
+            regionCenters.add(region.getCenter());
         }
-
         return regionCenters;
     }
 
-    public ArrayList<String> getCitizenNameLength(Country country, int n ){
-
-        ArrayList<String> CitizenNames = new ArrayList<>();
-
-        for (Citizen citizen:country.getCitizens()
+    public HashSet<Citizen> getCitizenNameLength(Country country, int n) {
+        HashSet<Citizen> citizens = new HashSet<>();
+        for (Citizen citizen : country.getCitizens()
         ) {
-            if(citizen.getName().length() == n){
-                CitizenNames.add(citizen.getName());
+            if (citizen.getName().length() == n) {
+                citizens.add(citizen);
             }
         }
-        return CitizenNames;
+        return citizens;
+    }
+
+    public HashSet<Citizen> getCitizenStartsWith(Country country, String n) {
+        HashSet<Citizen> citizens = new HashSet<>();
+        for (Citizen citizen : country.getCitizens()
+        ) {
+            if (citizen.getName().startsWith(n)) {
+                citizens.add(citizen);
+            }
+        }
+        return citizens;
     }
 
 }

@@ -5,20 +5,17 @@ public class Region {
     private Country country;
     private City Center;
 
+    public Region(String name, Country country) {
+        this.name = name;
+        this.country = country;
+    }
+
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Country getCountry() {
         return country;
-    }
-
-    public void setCountry(Country country) {
-        this.country = country;
     }
 
     public City getCenter() {
@@ -28,4 +25,13 @@ public class Region {
     public void setCenter(City center) {
         Center = center;
     }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public String toString(){
+        return String.format("  Область: %-50s", this.getName());
+    }
+
 }

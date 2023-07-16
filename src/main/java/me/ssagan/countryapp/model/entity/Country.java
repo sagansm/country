@@ -17,7 +17,7 @@ public class Country {
     }
 
     private String name;
-    private String capital;
+    private City capital;
 
     private double Square;
     private HashSet<Citizen> citizens = new HashSet<>();
@@ -32,11 +32,11 @@ public class Country {
         this.name = name;
     }
 
-    public String getCapital() {
+    public City getCapital() {
         return capital;
     }
 
-    public void setCapital(String capital) {
+    public void setCapital(City capital) {
         this.capital = capital;
     }
 
@@ -44,9 +44,9 @@ public class Country {
         return citizens;
     }
 
-    public void addCitizen(Citizen citizen) {
+    public void addCitizen(Citizen citizen, City city) {
         citizens.add(citizen);
-        citizen.setCountry(this);
+        citizen.setCity(city);
     }
 
     public HashSet<Region> getRegions() {

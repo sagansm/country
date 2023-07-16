@@ -1,15 +1,27 @@
 package me.ssagan.countryapp.controller;
 
+import me.ssagan.countryapp.model.entity.Citizen;
+import me.ssagan.countryapp.model.entity.City;
 import me.ssagan.countryapp.model.entity.Country;
+import me.ssagan.countryapp.model.entity.Region;
+import me.ssagan.countryapp.model.service.CitizenService;
 import me.ssagan.countryapp.model.service.CountryGenerator;
 import me.ssagan.countryapp.model.service.CountryService;
+import me.ssagan.countryapp.view.CitizenWriter;
+import me.ssagan.countryapp.view.CityWriter;
 
-import javax.sound.midi.Soundbank;
+import java.util.HashSet;
+import java.util.Scanner;
 
 public class CountryController {
     CountryGenerator generator = new CountryGenerator();
     Country country = generator.generateCountry();
     CountryService service = new CountryService();
+
+    CitizenService citizenService = new CitizenService();
+    CitizenWriter citizenWriter = new CitizenWriter();
+
+    CityWriter cityWriter = new CityWriter();
 
     //5.1 вывести на консоль столицу,
     // 5.2 количество областей,
@@ -22,7 +34,7 @@ public class CountryController {
     public void callCountryMethod(int index) {
         switch (index) {
             case 1: {
-                System.out.println("столица = " + country.getCapital());
+                System.out.println("столица = " + country.getCapital().getName());
                 break;
             }
             case 2: {
@@ -30,11 +42,14 @@ public class CountryController {
                 break;
             }
             case 3: {
-                System.out.println("площадь государства = " + country.getSquare());
+                System.out.format("площадь государства = %,.0f км2", country.getSquare());
+                System.out.println();
                 break;
             }
             case 4: {
-                System.out.println("областные центры = " + service.getRegionCenters(country));
+                HashSet<City> cities = service.getRegionCenters(country);
+                System.out.println("областные центры: ");
+                cityWriter.display(cities);
                 break;
             }
             case 5: {
@@ -42,11 +57,29 @@ public class CountryController {
                 break;
             }
             case 6: {
-                //System.out.println("Введите число от 5 до 10");
-                int n = 8;
-                System.out.println("жители, у которых имя состоит из " + 8 + " букв = " + service.getCitizenNameLength(country,n));
+                System.out.println("Введите число от 5 до 10");
+                Scanner scanner = new Scanner(System.in);
+                int n = scanner.nextInt();
+                HashSet<Citizen> citizens = service.getCitizenNameLength(country, n);
+                System.out.println("жители, у которых имя состоит из " + n + " букв: ");
+                citizenWriter.display(citizens);
                 break;
             }
+            case 7: {
+                System.out.println("Введите букву");
+                Scanner scanner = new Scanner(System.in);
+                String n = scanner.nextLine();
+                HashSet<Citizen> citizens = service.getCitizenStartsWith(country, n);
+                System.out.println("жители, у которых имя начинается с буквы " + n + ":");
+                for (Region region:country.getRegions()
+                     ) {
+                    System.out.println(region.toString());
+                    HashSet<Citizen> filteredCitizens = citizenService.filterCitizen(citizens, region);
+                    citizenWriter.displayToString(filteredCitizens);
+                }
+                break;
+            }
+
         }
     }
 }

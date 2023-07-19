@@ -5,7 +5,7 @@ import me.ssagan.countryapp.model.entity.City;
 import me.ssagan.countryapp.model.entity.Country;
 import me.ssagan.countryapp.model.entity.Region;
 import me.ssagan.countryapp.model.service.CitizenService;
-import me.ssagan.countryapp.model.service.CountryGenerator;
+import me.ssagan.countryapp.util.CountryGenerator;
 import me.ssagan.countryapp.model.service.CountryService;
 import me.ssagan.countryapp.view.CitizenWriter;
 import me.ssagan.countryapp.view.CityWriter;
@@ -14,23 +14,35 @@ import java.util.HashSet;
 import java.util.Scanner;
 
 public class CountryController {
-    CountryGenerator generator = new CountryGenerator();
-    Country country = generator.generateCountry();
-    CountryService service = new CountryService();
+    private static CountryController instance;
+    private final Country country;
+    private final CountryService service;
+    private final CitizenService citizenService;
+    private final CitizenWriter citizenWriter;
+    private final CityWriter cityWriter;
 
-    CitizenService citizenService = new CitizenService();
-    CitizenWriter citizenWriter = new CitizenWriter();
+    private CountryController() {
+        country = CountryGenerator.getInstance().generateCountry();
+        service = CountryService.getInstance();
+        citizenService = CitizenService.getInstance();
+        citizenWriter = CitizenWriter.getInstance();
+        cityWriter = CityWriter.getInstance();
+    }
 
-    CityWriter cityWriter = new CityWriter();
+    public static CountryController getInstance() {
+        if (instance == null) {
+            instance = new CountryController();
+        }
+        return instance;
+    }
 
-    //5.1 вывести на консоль столицу,
+    // 5.1 вывести на консоль столицу,
     // 5.2 количество областей,
     // 5.3 площадь государства,
     // 5.4 областные центры,
     // 5.5 средний возраст жителей,
     // 5.6 жителей у которых имя состоит из n букв ( чисто n  вводится  с клавиатуры).
     // 5.7 пункты 5.2 - 5.6 должны считаться в момент вызова метода, а не заранее. (т.е. пользователь делает выбор ->  вызывается метод -> вычисляются данные)
-
     public void callCountryMethod(int index) {
         switch (index) {
             case 1: {
@@ -71,15 +83,13 @@ public class CountryController {
                 String n = scanner.nextLine();
                 HashSet<Citizen> citizens = service.getCitizenStartsWith(country, n);
                 System.out.println("жители, у которых имя начинается с буквы " + n + ":");
-                for (Region region:country.getRegions()
-                     ) {
+                for (Region region : country.getRegions()) {
                     System.out.println(region.toString());
                     HashSet<Citizen> filteredCitizens = citizenService.filterCitizen(citizens, region);
                     citizenWriter.displayToString(filteredCitizens);
                 }
                 break;
             }
-
         }
     }
 }

@@ -1,14 +1,20 @@
 package me.ssagan.countryapp.model.entity;
 
 public class Citizen {
-    private final int id;
+    private static int counter;
+    private int id;
     private String surname;
     private String name;
     private int age;
     private City city;
 
-    public Citizen(int id) {
-        this.id = id;
+    public Citizen(String surname, String name, int age, City city) {
+        counter++;
+        this.id = counter;
+        this.surname = surname;
+        this.name = name;
+        this.age = age;
+        this.city = city;
     }
 
     public int getId() {
@@ -60,6 +66,6 @@ public class Citizen {
     }
 
     public String toString() {
-        return String.format("     Фамилия: %-10s, Имя: %-10s, Возраст: %-3s, Область: %-100s", this.getSurname(), this.getName(), this.getAge(), this.getRegion().getName());
+        return String.format("     ID: %-5s, Фамилия: %-10s, Имя: %-10s, Возраст: %-3s, Область: %-100s", this.getId(), this.getSurname(), this.getName(), this.getAge(), this.getRegion().getName());
     }
 }

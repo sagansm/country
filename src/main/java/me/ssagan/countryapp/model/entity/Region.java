@@ -30,8 +30,7 @@ public class Region {
         this.country = country;
     }
 
-    public String toString(){
+    public String toString() {
         return String.format("  Область: %-50s", this.getName());
     }
-
 }

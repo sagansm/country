@@ -3,26 +3,22 @@ package me.ssagan.countryapp.model.entity;
 import java.util.HashSet;
 
 public class Country {
-
-    private static Country INSTANCE;
+    private static Country instance;
+    private String name;
+    private City capital;
+    private double square;
+    private HashSet<Citizen> citizens = new HashSet<>();
+    private HashSet<Region> regions = new HashSet<>();
 
     private Country() {
     }
 
     public static Country getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new Country();
+        if (instance == null) {
+            instance = new Country();
         }
-        return INSTANCE;
+        return instance;
     }
-
-    private String name;
-    private City capital;
-
-    private double Square;
-    private HashSet<Citizen> citizens = new HashSet<>();
-
-    private HashSet<Region> regions = new HashSet<>();
 
     public String getName() {
         return name;
@@ -59,10 +55,10 @@ public class Country {
     }
 
     public double getSquare() {
-        return Square;
+        return square;
     }
 
     public void setSquare(double square) {
-        Square = square;
+        this.square = square;
     }
 }

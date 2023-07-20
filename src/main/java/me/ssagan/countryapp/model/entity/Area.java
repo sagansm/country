@@ -16,4 +16,9 @@ public class Area {
     public Region getRegion() {
         return region;
     }
+
+    public String toString() {
+        return String.format("     Название: %-50s", this.getName());
+    }
+
 }

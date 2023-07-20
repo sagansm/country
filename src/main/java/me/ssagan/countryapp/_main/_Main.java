@@ -1,21 +1,24 @@
 package me.ssagan.countryapp._main;
 
 import me.ssagan.countryapp.controller.CountryController;
+import me.ssagan.countryapp.view.ConsoleWriter;
 
 import java.util.Scanner;
 
 public class _Main {
     public static void main(String[] args) {
         CountryController controller = CountryController.getInstance();
-        System.out.println("Выберите вариант:");
-        System.out.println("0 - выход");
-        System.out.println("1 - вывести на консоль столицу");
-        System.out.println("2 - количество областей");
-        System.out.println("3 - площадь государства");
-        System.out.println("4 - областные центры");
-        System.out.println("5 - средний возраст жителей");
-        System.out.println("6 - жителей у которых имя состоит из n букв");
-        System.out.println("7 - Вывести список жителей у которых имя начинается с буквы");
+
+        String[] menuItems = new String[]{"выход",
+                "столица",
+                "количество областей",
+                "площадь государства",
+                "областные центры",
+                "средний возраст жителей",
+                "жители у которых имя состоит из n букв",
+                "список жителей у которых имя начинается с буквы"};
+
+        ConsoleWriter.getInstance().display("Выберите вариант:", menuItems);
         Scanner scanner = new Scanner(System.in);
         int menuIndex;
         while (true) {

@@ -1,23 +1,23 @@
 package me.ssagan.countryapp.model.entity;
 
 public class Citizen {
-    private static int counter;
-    private int id;
+    private static Long citizenIdCounter = 0L;
+    private Long id;
     private String surname;
     private String name;
     private int age;
     private City city;
 
     public Citizen(String surname, String name, int age, City city) {
-        counter++;
-        this.id = counter;
+        citizenIdCounter++;
+        this.id = citizenIdCounter;
         this.surname = surname;
         this.name = name;
         this.age = age;
         this.city = city;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 

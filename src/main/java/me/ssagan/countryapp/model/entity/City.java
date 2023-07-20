@@ -16,4 +16,9 @@ public class City {
     public Area getArea() {
         return area;
     }
+
+    public String toString() {
+        return String.format("     Название: %-50s", this.getName());
+    }
+
 }

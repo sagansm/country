@@ -17,14 +17,8 @@ public class CitizenWriter {
         return instance;
     }
 
-    public void display(Collection<Citizen> citizens) {
-        for (Citizen citizen : citizens) {
-            System.out.format("     Фамилия: %-10s, Имя: %-10s, Возраст: %-3s, Область: %-100s", citizen.getSurname(), citizen.getName(), citizen.getAge(), citizen.getRegion().getName());
-            System.out.println();
-        }
-    }
-
-    public void displayToString(Collection<Citizen> citizens) {
+    public void display(String caption, Collection<Citizen> citizens) {
+        System.out.println(caption + ": ");
         for (Citizen citizen : citizens) {
             System.out.println(citizen.toString());
         }

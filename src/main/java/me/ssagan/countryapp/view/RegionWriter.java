@@ -17,7 +17,8 @@ public class RegionWriter {
         return instance;
     }
 
-    public void display(Collection<Region> regions) {
+    public void display(String caption, Collection<Region> regions) {
+        System.out.println(caption + ": ");
         for (Region region : regions) {
             System.out.println(region.toString());
         }

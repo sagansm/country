@@ -17,10 +17,10 @@ public class CityWriter {
         return instance;
     }
 
-    public void display(Collection<City> cities) {
+    public void display(String caption, Collection<City> cities) {
+        System.out.println(caption + ": ");
         for (City city : cities) {
-            System.out.format("     Город: %-50s", city.getName());
-            System.out.println();
+            System.out.println(city.toString());
         }
     }
 }

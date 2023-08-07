@@ -41,30 +41,30 @@ public class CountryController {
     public void callCountryMethod(int index) {
         switch (index) {
             case 1: {
-                consoleWriter.display("столица", country.getCapital().getName());
+                consoleWriter.display("столица:", country.getCapital().getName());
                 break;
             }
             case 2: {
-                consoleWriter.display("количесто областей", Integer.toString(countryService.countRegion(country)));
+                consoleWriter.display("количесто областей:", Integer.toString(countryService.countRegion(country)));
                 break;
             }
             case 3: {
-                consoleWriter.display("площадь государства", Double.toString(country.getSquare()));
+                consoleWriter.display("площадь государства:", Double.toString(country.getSquare()));
                 break;
             }
             case 4: {
-                cityWriter.display("областные центры", countryService.getRegionCenters(country));
+                cityWriter.display("областные центры:", countryService.getRegionCenters(country));
                 break;
             }
             case 5: {
-                consoleWriter.display("средний возраст жителей", Integer.toString(countryService.getCitizenAverageAge(country)));
+                consoleWriter.display("средний возраст жителей: ", Integer.toString(countryService.getCitizenAverageAge(country)));
                 break;
             }
             case 6: {
                 consoleWriter.display("Введите число от 5 до 10");
                 Scanner scanner = new Scanner(System.in);
                 int n = scanner.nextInt();
-                citizenWriter.display("жители, у которых имя состоит из " + n + " букв", countryService.getCitizenNameLength(country, n));
+                citizenWriter.display("жители, у которых имя состоит из " + n + " букв:", countryService.getCitizenNameLength(country, n));
                 break;
             }
             case 7: {

@@ -18,9 +18,9 @@ public class CitizenWriter {
     }
 
     public void display(String caption, Collection<Citizen> citizens) {
-        System.out.println(caption + ": ");
+        System.out.println(caption);
         for (Citizen citizen : citizens) {
-            System.out.println(citizen.toString());
+            System.out.println(citizen);
         }
     }
 }

@@ -18,9 +18,9 @@ public class CityWriter {
     }
 
     public void display(String caption, Collection<City> cities) {
-        System.out.println(caption + ": ");
+        System.out.println(caption);
         for (City city : cities) {
-            System.out.println(city.toString());
+            System.out.println(city);
         }
     }
 }
